@@ -1,0 +1,25 @@
+spec:
+  template:
+    spec:
+      livenessProbe:
+        httpGet:
+          path: /actuator/health
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 180
+      readinessProbe:
+        httpGet:
+          path: /actuator/health
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 20
+      initContainers:
+        - name: volume-mount-hack
+          image: >-
+            docker-registry.default.svc:5000/angular-web-app/carga@sha256:58b2dea507b5ddb1abc778c676c8b18b5ab84948656370833436965ccbeaf0fe
+          command: ["sh", "-c", "chown -R 200:200 /media"]
+          volumeMounts:
+            - mountPath: /media
+              name: volume-9wbrl
+            - mountPath: /afp
+              name: volume-9wbrl
