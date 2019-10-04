@@ -13,3 +13,11 @@ spec:
           port: 8080
           scheme: HTTP
         initialDelaySeconds: 20
+      initContainers:
+          - name: carga
+            command: ["sh", "-c", "chown -R 200:200 /media"]
+            volumeMounts:
+              - mountPath: /media
+                name: volume-9wbrl
+              - mountPath: /afp
+                name: volume-9wbrl
