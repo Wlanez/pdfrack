@@ -26,12 +26,14 @@ public class PDFFileUtil {
     private void getAllFileDirectories(File currentFile) {
         File[] listOfFiles = currentFile.listFiles();
 
+        if(listOfFiles!=null){
         for (int i = 0; i < listOfFiles.length; ++i) {
             if (listOfFiles[i].isDirectory()) {
                 this.getAllFileDirectories(listOfFiles[i]);
             } else if (listOfFiles[i].getName().toLowerCase().endsWith(".pdf")) {
                 this.pdfFiles.add(listOfFiles[i]);
             }
+        }
         }
 
     }
